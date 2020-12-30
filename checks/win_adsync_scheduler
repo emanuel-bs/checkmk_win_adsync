@@ -19,13 +19,20 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-# <<<win_adsync_schedule>>>
-# SyncCycleEnabled:True
-# MaintenanceEnabled:True
-# StagingModeEnabled:False
-# SchedulerSuspended:False
-# SyncCycleInProgress:False
-# NextSyncCycleStartTimeInUTC:05.06.2020 05:11:51
+#<<<win_adsync_scheduler:sep(0):encoding(cp437)>>>
+
+
+#AllowedSyncCycleInterval            : 00:30:00
+#CurrentlyEffectiveSyncCycleInterval : 00:30:00
+#CustomizedSyncCycleInterval         : 
+#NextSyncCyclePolicyType             : Delta
+#NextSyncCycleStartTimeInUTC         : 30/12/2020 13:14:36
+#PurgeRunHistoryInterval             : 7.00:00:00
+#SyncCycleEnabled                    : True
+#MaintenanceEnabled                  : True
+#StagingModeEnabled                  : False
+#SchedulerSuspended                  : False
+#SyncCycleInProgress                 : False
 
 import calendar
 
@@ -44,7 +51,7 @@ def parse_win_adsync_scheduler(items):
             parsed[key] = False
         elif key in ['NextSyncCycleStartTimeInUTC']:
             try:
-                struc_time = time.strptime(value, "%d.%m.%Y %H:%M:%S")
+                struc_time = time.strptime(value, "%d/%m/%Y %H:%M:%S")
                 parsed[key] = time.localtime((calendar.timegm(struc_time)))
             except Exception:
                 pass
